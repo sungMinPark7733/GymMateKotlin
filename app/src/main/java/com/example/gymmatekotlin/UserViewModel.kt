@@ -1,6 +1,7 @@
 package com.example.gymmatekotlin
 
 import androidx.lifecycle.ViewModel
+import com.example.gymmatekotlin.screen.DaysOfWeek
 import com.example.gymmatekotlin.userdata.User
 
 class UserViewModel : ViewModel() {
@@ -12,7 +13,7 @@ class UserViewModel : ViewModel() {
     var height: Int = 0
     var weight: Int = 0
     var goal: String = ""
-    var day: List<Boolean> = emptyList()
+    var day: List<DaysOfWeek> = emptyList()
 
     var user: User = User(
         email,

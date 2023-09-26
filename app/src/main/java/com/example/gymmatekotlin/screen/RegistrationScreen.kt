@@ -34,6 +34,7 @@ fun RegistrationScreen(userViewModel: UserViewModel, navController: NavControlle
     var weight by remember { mutableIntStateOf(userViewModel.weight) }
     var goal by remember { mutableStateOf(userViewModel.goal) }
     var days by remember { mutableStateOf(List(DaysOfWeek.values().size) { false }) }
+    var selectedDays by remember { mutableStateOf(emptyList<DaysOfWeek>()) }
 
     Column(
         modifier = Modifier
@@ -199,6 +200,7 @@ fun RegistrationScreen(userViewModel: UserViewModel, navController: NavControlle
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -216,11 +218,15 @@ fun RegistrationScreen(userViewModel: UserViewModel, navController: NavControlle
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
+                    val isChecked = selectedDays.contains(day)
+
                     Checkbox(
-                        checked = days[index],
+                        checked = isChecked,
                         onCheckedChange = { newCheckedState ->
-                            days = days.toMutableList().also {
-                                it[index] = newCheckedState
+                            selectedDays = if (newCheckedState) {
+                                selectedDays + day // Add the day to the selected list
+                            } else {
+                                selectedDays - day // Remove the day from the selected list
                             }
                         },
                         colors = CheckboxDefaults.colors(checkmarkColor = MaterialTheme.colorScheme.primary)
@@ -242,7 +248,7 @@ fun RegistrationScreen(userViewModel: UserViewModel, navController: NavControlle
                     userViewModel.height = height
                     userViewModel.weight = weight
                     userViewModel.goal = goal
-                    userViewModel.day = days
+                    userViewModel.day = selectedDays
                     navController.navigate(GymmateRoute.CONFIRMATION)
 
                 },
