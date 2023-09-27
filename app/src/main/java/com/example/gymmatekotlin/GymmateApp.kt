@@ -1,4 +1,4 @@
-package com.example.gymmate
+package com.example.gymmatekotlin
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gymmatekotlin.UserViewModel
+import com.example.gymmate.GymmateRoute
+import com.example.gymmate.NavigationActions
 import com.example.gymmatekotlin.screen.CaloriesScreen
 import com.example.gymmatekotlin.screen.ConfirmationScreen
 import com.example.gymmatekotlin.screen.RegistrationScreen
@@ -49,7 +50,7 @@ fun GymmateNavHost(
             ConfirmationScreen(userViewModel = userViewModel, navController = navController)
         }
         composable(route = GymmateRoute.CALORIES) {
-            CaloriesScreen(navController = navController)
+            CaloriesScreen()
         }
     }
 }

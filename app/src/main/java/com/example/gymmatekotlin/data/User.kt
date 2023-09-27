@@ -1,4 +1,4 @@
-package com.example.gymmatekotlin.userdata
+package com.example.gymmatekotlin.data
 
 import com.example.gymmatekotlin.screen.DaysOfWeek
 

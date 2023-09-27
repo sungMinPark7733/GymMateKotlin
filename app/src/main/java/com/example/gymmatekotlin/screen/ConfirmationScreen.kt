@@ -1,12 +1,6 @@
 package com.example.gymmatekotlin.screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,82 +22,72 @@ fun ConfirmationScreen(userViewModel: UserViewModel, navController: NavControlle
     val userGoal = userViewModel.goal
     val userDays = userViewModel.day
 
-
     Column {
-        Text(
-            text = "Confirmation",
-            fontSize = 32.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+        ConfirmationHeader()
+        EnteredDataItem("Email", userEmail)
+        EnteredDataItem("Name", userName)
+        EnteredDataItem("Gender", userGender)
+        EnteredDataItem("Age", userAge.toString())
+        EnteredDataItem("Height", userHeight.toString())
+        EnteredDataItem("Weight", userWeight.toString())
+        EnteredDataItem("Goal", userGoal)
+        EnteredDataItem("Day", userDays.joinToString(", "))
 
-        Text(
-            text = "Entered Email:${userEmail}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered name: ${userName}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered gender: ${userGender}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered age: ${userAge}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered height: ${userHeight}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered weight: ${userWeight}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered goal: ${userGoal}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Text(
-            text = "Entered day: ${userDays}",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Button(
-                onClick = {
-                    navController.navigate("regi")
-
-                },
-                modifier = Modifier.width(200.dp)
-            ) {
-                Text(text = "Previous", fontSize = 24.sp)
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = {
-
-                },
-                modifier = Modifier.width(200.dp)
-
-            ) {
-                Text(text = "Confirm", fontSize = 24.sp)
-            }
-        }
+        ButtonsRow(navController)
     }
 }
 
+@Composable
+fun ConfirmationHeader() {
+    Text(
+        text = "Confirmation",
+        fontSize = 32.sp,
+        modifier = Modifier.padding(bottom = 16.dp)
+    )
+}
+
+@Composable
+fun EnteredDataItem(label: String, value: String) {
+    Text(
+        text = "Entered $label: $value",
+        fontSize = 24.sp,
+        modifier = Modifier.padding(bottom = 16.dp)
+    )
+}
+
+@Composable
+fun ButtonsRow(navController: NavController) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        PreviousButton(navController)
+        Spacer(modifier = Modifier.height(16.dp))
+        ConfirmButton()
+    }
+}
+
+@Composable
+fun PreviousButton(navController: NavController) {
+    Button(
+        onClick = {
+            navController.navigate("regi")
+        },
+        modifier = Modifier.width(200.dp)
+    ) {
+        Text(text = "Previous", fontSize = 24.sp)
+    }
+}
+
+@Composable
+fun ConfirmButton() {
+    Button(
+        onClick = {
+            // Handle confirmation logic here
+        },
+        modifier = Modifier.width(200.dp)
+    ) {
+        Text(text = "Confirm", fontSize = 24.sp)
+    }
+}

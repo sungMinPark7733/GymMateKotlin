@@ -2,7 +2,7 @@ package com.example.gymmatekotlin
 
 import androidx.lifecycle.ViewModel
 import com.example.gymmatekotlin.screen.DaysOfWeek
-import com.example.gymmatekotlin.userdata.User
+import com.example.gymmatekotlin.data.User
 
 class UserViewModel : ViewModel() {
 
