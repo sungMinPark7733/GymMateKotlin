@@ -86,7 +86,9 @@ fun SignInScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.weight(1f)) // This will push the "Sign in" button to the right end of the row
 
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {
+                navController.navigate(GymmateRoute.CALORIES)
+            }) {
                 Text(text = "Sign in", fontSize = 24.sp)
 
             }

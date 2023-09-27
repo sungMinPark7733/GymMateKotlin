@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.gymmatekotlin.UserViewModel
+import com.example.gymmatekotlin.screen.CaloriesScreen
 import com.example.gymmatekotlin.screen.ConfirmationScreen
 import com.example.gymmatekotlin.screen.RegistrationScreen
 import com.example.gymmatekotlin.screen.SignInScreen
@@ -46,6 +47,9 @@ fun GymmateNavHost(
         }
         composable(route = GymmateRoute.CONFIRMATION) {
             ConfirmationScreen(userViewModel = userViewModel, navController = navController)
+        }
+        composable(route = GymmateRoute.CALORIES) {
+            CaloriesScreen(navController = navController)
         }
     }
 }

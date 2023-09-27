@@ -29,6 +29,7 @@ object GymmateRoute {
     const val SIGNIN = "SignIn"
     const val REGISTER = "Register"
     const val CONFIRMATION = "Confirmation"
+    const val CALORIES = "Calories"
 
 }
 
